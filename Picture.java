@@ -367,7 +367,59 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+   //written by Ethan Song
 
+    public void sepia(){
+    
+    //create a pixel array 
+    Pixel[][]pixels = this.getPixels2D();
+    //create pixel variable
+    Pixel pixel = null;
+    //create variables for rgb
+    int redValues = 0;
+    int blueValues = 0;
+    int greenValues = 0;
+    //create sepia variables
+    int sRed, sBlue, sGreen = 0;
+
+    //nested for loops to loop through pixels
+    for(int r = 0; r < pixels.length; r++){
+      for(int c = 0; c < pixels[0].length; c++){
+        //get current pixel
+        pixel = pixels[r][c];
+
+        //get color values
+        redValues = pixel.getRed();
+        greenValues = pixel.getGreen();
+        blueValues = pixel.getBlue();
+
+        //convert to sepia 
+        sRed = (int)((0.393 * redValues) + (0.769 * greenValues) + (0.189 * blueValues));
+        sGreen = (int)((0.349 * redValues) + (0.686 * greenValues) + (0.168 * blueValues));
+        sBlue = (int)((0.272 * redValues) + (0.534 * greenValues) + (0.131 * blueValues));
+
+        //check if values are over 255
+        if(sRed > 255){
+          sRed = 255;
+        }
+
+        if(sGreen > 255){
+          sGreen = 255;
+        }
+
+        if(sBlue > 255){
+          sBlue = 255;
+        }
+
+        //set pixels
+        pixel.setRed(sRed);
+        pixel.setGreen(sGreen);
+        pixel.setBlue(sBlue);
+
+      }
+    }
+
+  }
    
 
 
